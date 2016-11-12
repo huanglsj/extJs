@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title></title>
+		<link href="ext-3.4.0/resources/css/ext-all.css" rel="stylesheet" type="text/css" />
+    <script src="ext-3.4.0/adapter/ext/ext-base.js" type="text/javascript"></script>
+    <script src="ext-3.4.0/ext-all.js" type="text/javascript"></script>
+    <script src="ext-3.4.0/src/locale/ext-lang-zh_CN.js" type="text/javascript"></script>
+    <script src="ext-3.4.0/src/data/DateTimeField.js" type="text/javascript"></script>
+	</head>
+	<body>
+		<script type="text/javascript">
+		var combo,dd;
+        Ext.onReady(function () {
+            //数据：
+var CountryCode = [
+    ['93','435'],
+    ['355','5345'],
+    ['213','454'],
+    ['376','545'],
+    ['244','4534'],
+]
+
+//ComboBox 定义：
+ combo = new Ext.form.ComboBox({
+	renderTo:'hh',
+    typeAhead: true,
+    triggerAction: 'all',
+    lazyRender:true,
+    mode: 'local',
+    store: new Ext.data.ArrayStore({
+  
+        fields: [
+            'myId',
+            'displayText'
+        ],
+        data: CountryCode
+    }),
+    valueField: 'myId',
+    displayField: 'displayText',
+     emptyText : '请选择', 
+});
+
+console.log(combo.getValue());
+
+dd = new Ext.ux.DateTimeField({
+	fieldLabel : '起始时间',
+	name : 'startTime',
+	renderTo : 'date',
+	enableKeyEvents : true,
+	width : 210,
+	format : 'Y-m-d H:i:s',
+	value:new Date().add(Date.DAY, -7),
+	emptyText : '为空的时候显示'
+       })
+
+console.log(dd.value);
+});
+        
+        
+    </script>
+    
+    <div id="hh" style="width: 100px;height: 30px;border: 1px solid #ddd;"></div>
+    
+    <div id="date" style="width: 100px;height: 30px;border: 1px solid #ddd;"></div>
+	</body>
+</html>
